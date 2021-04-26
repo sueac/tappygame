@@ -1,0 +1,318 @@
+<HTML>	
+	<head>
+		<title>Tappy</title>
+		
+		<style>
+			.sectionLeft {
+				float: left;
+				width: 75%;
+			}
+			.sectionRight {
+				float: right;
+				width: 25%;
+			}
+			.scoreContainer {
+				font-size: 18px;
+				font-weight: bold;
+			}
+			.clickerContainer img {
+				position: relative;
+				transition: all .2s ease-in-out;
+			}
+			.clickerContainer img:hover { transform: scale(1.10);}
+			.clickerContainer img:active {transform: scale(0.99);}
+			
+			.shopButton {
+				background-color: #b5b5b5;
+				transition: all .2s ease-in-out;
+				border-radius: 10px;
+				width: 100%;
+				margin: 10px 0px 10px 0px;
+			}
+			.shopButton:hover {
+				background-color: #c7c7c7;
+				transition:all .2 ease-in-out;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sectionLeft">
+			<center>
+			<div class="scoreContainer">
+				<p>Score: <span id="score"> 0 </span> credits</p>
+				<p><span id="creditspersecond"> 0 </span> credits per second</p>
+			</div>
+			<div class="clickerContainer">
+				
+				<img src="https://www.pinclipart.com/picdir/big/333-3336549_power-up-arrow-pixel-art-clipart.png" height="192px" width="192px" onclick="addToScore(amount)">
+				
+			</div>
+			</center>
+		</div>
+		<div class="sectionRight">
+			<table class="shopButton" onclick="buyUSB()">
+				<tr>
+					<td id="imagine"><img src="http://www.clker.com/cliparts/l/t/T/Q/E/M/white-usb-md.png" width = 64px length = 64px></td>
+					<td id="nameAndCost">
+						<p>USB</p>
+						<p><span id="USBcost">100</span> credits</p>
+					</td>
+					<td id="amount"><span id="USB">0</span></td>
+				</tr>
+			</table>
+			<table class="shopButton" onclick="buyCalc()">
+				<tr>
+					<td id="imagine"><img src="http://www.clker.com/cliparts/n/N/Y/W/R/2/calculator-md.png" width = 64px length = 64px></td>
+					<td id="nameAndCost">
+						<p>Calculator</p>
+						<p><span id="Calccost">500</span> credits</p>
+					</td>
+					<td id="amount"><span id="Calc">0</span></td>
+				</tr>
+			</table>
+			<table class="shopButton" onclick="buyPhone()">
+				<tr>
+					<td id="imagine"><img src="http://www.clker.com/cliparts/b/e/6/6/1194986412424524297phone.svg.hi.png" width = 64px length = 64px></td>
+					<td id="nameAndCost">
+						<p>Phone</p>
+						<p><span id="PhoneCost">1000</span> credits</p>
+					</td>
+					<td id="amount"><span id="Phone">0</span></td>
+				</tr>
+			</table>
+			<table class="shopButton" onclick="buyComputer()">
+				<tr>
+					<td id="imagine"><img src="http://www.clker.com/cliparts/a/4/2/b/11949837851724523185gis-computer_glenn_rolla_01.svg.med.png" width = 64px length = 64px></td>
+					<td id="nameAndCost">
+						<p>Computer</p>
+						<p><span id="ComputerCost">5000</span> credits</p>
+					</td>
+					<td id="amount"><span id="Computer">0</span></td>
+				</tr>
+			</table>
+			<table class="shopButton" onclick="buySuperComputer()">
+				<tr>
+					<td id="imagine"><img src="http://www.clker.com/cliparts/8/6/4/1/11949856711586665480racked.svg.med.png" width = 56px length = 64px></td>
+					<td id="nameAndCost">
+						<p>SuperComputer</p>
+						<p><span id="SuperComputerCost">10000</span> credits</p>
+					</td>
+					<td id="amount"><span id="SuperComputer">0</span></td>
+				</tr>
+			</table>
+			<table class="shopButton" onclick="buyAI()">
+				<tr>
+					<td id="imagine"><img src="https://clipground.com/images/artificial-intelligence-clipart-6.png" width = 64px length = 64px></td>
+					<td id="nameAndCost">
+						<p>AI</p>
+						<p><span id="AICost">10000</span> credits</p>
+					</td>
+					<td id="amount"><span id="AI">0</span></td>
+				</tr>
+			</table>
+			<button onclick = "saveGame();">Save Game</button>
+			<button onclick = "resetGame();"> Reset Game </button>
+		</div>
+		<script>
+			var score = 0;
+			var amount = 1
+			
+			var USBcost = 100;
+			var USB = 0;
+			var Calccost = 500;
+			var Calc = 0
+			var PhoneCost = 1000;
+			var Phone = 0;
+			var ComputerCost = 5000;
+			var Computer = 0;
+			var SuperComputerCost = 10000;
+			var SuperComputer = 0;
+			var AI = 0;
+			var AICost = 25000;
+			
+			function buyUSB() {
+				if(score >= USBcost) {
+					score = score - USBcost;
+					USB = USB + 1;
+					USBcost = Math.round(USBcost * 1.15);
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("USB").innerHTML = USB;
+					document.getElementById("USBcost").innerHTML = USBcost;
+					creditspersecond ();
+
+				}
+			}
+			
+			function buyCalc() {
+				if(score >= Calccost) {
+					score = score - Calccost;
+					Calc = Calc + 1;
+					Calccost = Math.round(Calccost * 1.15);
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("Calc").innerHTML = Calc;
+					document.getElementById("Calccost").innerHTML = Calccost;
+					creditspersecond ();
+
+				}
+			}
+			
+			
+			function buyPhone() {
+				if(score >= PhoneCost) {
+					score = score - PhoneCost;
+					Phone = Phone + 1;
+					PhoneCost = Math.round(PhoneCost * 1.15);
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("Phone").innerHTML = Phone;
+					document.getElementById("PhoneCost").innerHTML = PhoneCost;
+					creditspersecond ();
+				}
+			}
+			function buyComputer() {
+				if(score >= ComputerCost) {
+					score = score - ComputerCost;
+					Computer = Computer + 1;
+					ComputerCost = Math.round(ComputerCost * 1.15);
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("Computer").innerHTML = Computer;
+					document.getElementById("ComputerCost").innerHTML = ComputerCost;
+					creditspersecond ();
+				}
+			}
+			function buySuperComputer() {
+				if(score >= SuperComputerCost) {
+					score = score - SuperComputerCost;
+					SuperComputer = SuperComputer + 1;
+					SuperComputerCost = Math.round(SuperComputerCost * 1.15);
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("SuperComputer").innerHTML = SuperComputer;
+					document.getElementById("SuperComputerCost").innerHTML = SuperComputerCost;
+					creditspersecond ();
+				}
+			}
+			function buyAI() {
+				if(score >= AICost) {
+					score = score - AICost;
+					AI = AI + 1;
+					AICost = Math.round(AICost * 1.15);
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("AI").innerHTML = AI;
+					document.getElementById("AICost").innerHTML = AICost;
+					creditspersecond ();
+				}
+			}
+
+
+			function addToScore (amount) {
+				score = score + amount;
+				document.getElementById("score").innerHTML = score;
+			}
+			
+			function creditspersecond () {
+				cps = USB + (Calc *5) + (Phone *25) + (Computer *100) + (SuperComputer *250) + (AI *1000);
+				if (cps >= 50)
+					amount = 1;
+					if(cps >= 100)
+						amount = 5;
+						if(cps >= 200)
+							amount = 10;
+							if(cps >= 300)
+								amount = 50;
+								if(cps >= 400)
+									amount= 100;
+									if(cps >= 500)
+										amount = 200;
+				document.getElementById("creditspersecond").innerHTML = cps;
+			}
+			function loadGame() {
+				var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+				if(typeof savedGame.score !== "undefined") 
+					score = savedGame.score;
+				if(typeof savedGame.USB !== "undefined") 
+					USB = savedGame.USB;
+				if(typeof savedGame.USBcost !== "undefined") 
+					USBcost = savedGame.USBcost;
+				if(typeof savedGame.Calccost !== "undefined") 
+					Calccost = savedGame.Calccost;
+				if(typeof savedGame.Calc !== "undefined") 
+					Calc = savedGame.Calc;
+				if(typeof savedGame.Phone !== "undefined") 
+					Phone = savedGame.Phone;
+				if(typeof savedGame.PhoneCost !== "undefined") 
+					PhoneCost = savedGame.PhoneCost;
+				if(typeof savedGame.ComputerCost !== "undefined") 
+					ComputerCost = savedGame.ComputerCost;
+				if(typeof savedGame.Computer !== "undefined") 
+					Computer = savedGame.Computer;
+				if(typeof savedGame.SuperComputerCost !== "undefined") 
+					SuperComputerCost = savedGame.SuperComputerCost;
+				if(typeof savedGame.SuperComputer !== "undefined") 
+					SuperComputer = savedGame.SuperComputer;
+				if(typeof savedGame.AICost !== "undefined") 
+					AICost = savedGame.AICost;
+				if(typeof savedGame.AI !== "undefined") 
+					AI = savedGame.AI;
+			
+			}
+			function saveGame() {
+				var gameSave = {
+					score: score,
+					USBcost: USBcost,
+					USB: USB,
+					Calccost: Calccost, 
+					Calc : Calc,
+					PhoneCost: PhoneCost,
+					Phone : Phone,
+					ComputerCost: ComputerCost,
+					Computer: Computer,
+					SuperComputerCost: SuperComputerCost,
+					SuperComputer: SuperComputer,
+					AI : AI,
+					AICost: AICost
+				};
+				localStorage.setItem("gameSave", JSON.stringify(gameSave));
+			}
+			function resetGame() {
+				if (confirm("Do you want to reset your game")) {
+					var gameSave = {};
+					localStorage.setItem("gameSave", JSON.stringify(gameSave));
+					location.reload();
+				}
+			}
+			window.onload = function() {
+				loadGame();
+				creditspersecond ();
+				document.getElementById("score").innerHTML = score;
+				document.getElementById("USB").innerHTML = USB;
+				document.getElementById("USBcost").innerHTML = USBcost;
+				document.getElementById("Calc").innerHTML = Calc;
+				document.getElementById("Calccost").innerHTML = Calccost;
+				document.getElementById("Phone").innerHTML = Phone;
+				document.getElementById("PhoneCost").innerHTML = PhoneCost;
+				document.getElementById("Computer").innerHTML = Computer;
+				document.getElementById("ComputerCost").innerHTML = ComputerCost;
+				document.getElementById("SuperComputer").innerHTML = SuperComputer;
+				document.getElementById("SuperComputerCost").innerHTML = SuperComputerCost;
+				document.getElementById("AI").innerHTML = AI;
+				document.getElementById("AICost").innerHTML = AICost;
+
+			}
+			
+			setInterval (function() {
+				score = score + USB;
+				score = score + Calc * 5;
+				score = score + Phone * 25;
+				score = score + Computer * 100;
+				score = score + SuperComputer * 250;
+				score = score + AI * 1000;
+				document.getElementById("score").innerHTML = score;
+			}, 1000)
+			
+			setInterval(function() {
+				saveGame();
+			}, 30000); 
+
+
+		</script>
+	</body>
+</HTML>
